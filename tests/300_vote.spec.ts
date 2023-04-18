@@ -23,7 +23,7 @@ test.describe('vote tests', () => {
       if(!(await page.getByText('Thank you for your vote!').isVisible()))
       {
         const commentVote = page.locator('textarea#comment');
-        await commentVote.waitFor({ timeout: 5000 });
+        await commentVote.waitFor({ timeout: 9000 });
         await commentVote.fill("from dc morgan"+lastThreeUsers[0].substring(16));
         await page.getByRole('button', { name: 'Vote!' }).click();
         await expect(page.getByText('Thank you for your vote!')).toBeVisible();
@@ -36,8 +36,11 @@ test.describe('vote tests', () => {
       await page.locator('td.thumbnail a:first-child').nth(2).click();
       if(!(await page.getByText('Thank you for your vote!').isVisible()))
       {
-        // await page.locator('textarea[id="comment"]').fill("from mc morgan"+lastThreeUsers[1].substring(16));
-        await page.getByRole('textbox').fill("from dc morgan"+lastThreeUsers[1].substring(16));
+        
+        const commentVote = page.locator('textarea#comment');
+        await commentVote.waitFor({ timeout: 9000 });
+        await commentVote.fill("from dc morgan"+lastThreeUsers[1].substring(16));
+        // await page.getByRole('textbox').fill("from dc morgan"+lastThreeUsers[1].substring(16));
         await page.getByRole('button', { name: 'Vote!' }).click();
         await expect(page.getByText('Thank you for your vote!')).toBeVisible();
       }

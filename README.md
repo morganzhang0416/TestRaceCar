@@ -1,10 +1,10 @@
 ## Overview
 
-This project is a Playwright framewrok and script written in TypeScript that test to a website.
+This project is a **Playwright** framewrok and **TypeScript** script test to test buggy cat rating website.
 
-## two ways to exute the test
+## two ways to excute the test
 
-1, Run test in CI/CD - fork the repo to your github and with every pull and push, test will be excuted in your GitHub Acutions beacuse of yml file.
+1, Run test in **CI/CD** - fork the repo to your github and with every pull and push, test will be excuted in your GitHub Acutions beacuse of yml file.
 
 2, Run test on your own machine - git clone the repo to your local then follow the following steps (take an example with Mac M1 pro)
 
