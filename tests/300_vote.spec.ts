@@ -1,5 +1,6 @@
 import { login } from '../utils/f_login';
 import { test, expect } from '@playwright/test';
+import { ElementHandle } from 'puppeteer';
 import * as fs from 'fs';
 import * as dotenv from 'dotenv';
 
@@ -22,7 +23,18 @@ test.describe('vote tests', () => {
       await page.locator('td.thumbnail a:first-child').nth(2).click();
       if(!(await page.getByText('Thank you for your vote!').isVisible()))
       {
-        await page.locator('textarea[id="comment"]').fill("from dc morgan"+lastThreeUsers[0].substring(16));
+        //await page.getByRole('textbox').fill("from dc morgan"+lastThreeUsers[0].substring(16));
+        try {
+          const commentTextarea = await Promise.race([
+              page.waitForSelector('textarea[id="comment"]'),
+              new Promise(resolve => setTimeout(resolve, 5000)) // 5 second timeout
+          ]) as ElementHandle<HTMLInputElement>; // type assertion here
+          await commentTextarea.type("from mc morgan" + lastThreeUsers[0].substring(16)); 
+          } catch (error) {
+              console.error(error);
+          }
+      
+      
         await page.getByRole('button', { name: 'Vote!' }).click();
         await expect(page.getByText('Thank you for your vote!')).toBeVisible();
       }
@@ -34,7 +46,16 @@ test.describe('vote tests', () => {
       await page.locator('td.thumbnail a:first-child').nth(2).click();
       if(!(await page.getByText('Thank you for your vote!').isVisible()))
       {
-        await page.locator('textarea[id="comment"]').fill("from mc morgan"+lastThreeUsers[1].substring(16));
+        // await page.getByRole('textbox').fill("from mc morgan"+lastThreeUsers[1].substring(16));
+        try {
+          const commentTextarea = await Promise.race([
+              page.waitForSelector('textarea[id="comment"]'),
+              new Promise(resolve => setTimeout(resolve, 5000)) // 5 second timeout
+          ]) as ElementHandle<HTMLInputElement>; // type assertion here
+          await commentTextarea.type("from mc morgan" + lastThreeUsers[1].substring(16)); 
+          } catch (error) {
+              console.error(error);
+          }
         await page.getByRole('button', { name: 'Vote!' }).click();
         await expect(page.getByText('Thank you for your vote!')).toBeVisible();
       }
