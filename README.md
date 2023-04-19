@@ -6,9 +6,11 @@ This project is a Playwright framework. Its script is written in TypeScript to t
 
 Run the tests in CI/CD - fork the repo to your github; with every pull and push, the tests will be executed in your GitHub Actions setup by .yml file.
 
+Or
+
 Run the tests on your own machine - git clone the repo to your local then follow the following steps. 
 
-
+---
 
 ### Prerequisites / Setup Information
 
