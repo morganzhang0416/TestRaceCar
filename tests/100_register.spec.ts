@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as dotenv from 'dotenv';
 dotenv.config();
-
+// define variable from env file
 const password = process.env.MY_PASSWORD;
 const wrongpassword = process.env.MY_WRONGPASSWORD;
 const username = process.env.MY_USERNAME;
@@ -19,7 +19,7 @@ test.describe('register tests', () => {
 
 
   test('has title of Buggy Cars Rating', async ({ page }) => {
-    // Expect page url "to contain" register.
+    // Expect register page url "to contain" register.
     await expect(page).toHaveURL(/register/);
   });
 
@@ -38,11 +38,11 @@ test.describe('register tests', () => {
     await expect(page.getByText(/Registration is successful/)).toBeVisible();
 
     const usernameWithTimestamp = `${username}_${timestamp}`;
-    // Append username and timestamp to file
+    // Append username and timestamp to txt file
     console.log("(number 1) register user test with 5 different browsers");
     fs.appendFileSync(filePath, usernameWithTimestamp + '\n');
     
-    // Read file to confirm the content
+    // Read txt file to confirm the content has been added to the file
     const fileContent = fs.readFileSync(filePath, 'utf8');
     expect(fileContent).toContain(usernameWithTimestamp);
   });

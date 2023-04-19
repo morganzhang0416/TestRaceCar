@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import * as dotenv from 'dotenv';
 dotenv.config();
-
+// define variable from env file
 const password = process.env.MY_PASSWORD;
 const wrongpassword = process.env.MY_WRONGPASSWORD;
 const username = process.env.MY_USERNAME;
@@ -14,7 +14,7 @@ test.describe('login tests', () => {
 
 
   test('has title of Buggy Cars Rating', async ({ page }) => {
-    // Expect title "to contain"  Buggy Cars Rating.
+    // Expect home page title "to contain"  Buggy Cars Rating.
     await expect(page).toHaveTitle(/Buggy Cars Rating/);
   });
 
@@ -23,7 +23,7 @@ test.describe('login tests', () => {
     await page.getByPlaceholder("Login").fill(username||'');
     await page.locator('input[name="password"]').fill(password||'');
     await page.getByRole('button', { name: 'Login' }).click()
-    // Expects the page to contain Profile.
+    // Expects the page to contain Profile that means login process is sucessful.
     await expect(page.locator('a[href="/profile"]')).toContainText("Profile")
     console.log("(number 2) login user test with 5 different browsers");
   });
