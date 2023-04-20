@@ -21,7 +21,7 @@ test.describe('vote tests', () => {
 
       await login(page, lastThreeUsers[0], password);
       await page.locator('a[href="/overall"]').click();
-      await page.locator('td.thumbnail a:first-child').nth(2).click();
+      await page.locator('td.thumbnail a:first-child').nth(0).click();
       if(!(await page.getByText('Thank you for your vote!').isVisible()))
       {
         const commentVote = page.locator('textarea#comment');
@@ -36,7 +36,7 @@ test.describe('vote tests', () => {
     else if(viewportSize && viewportSize.width <= 768) {
       await login(page, lastThreeUsers[1], password);
       await page.locator('a[href="/overall"]').click();
-      await page.locator('td.thumbnail a:first-child').nth(2).click();
+      await page.locator('td.thumbnail a:first-child').nth(0).click();
       if(!(await page.getByText('Thank you for your vote!').isVisible()))
       {
         
